@@ -1,18 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const Curso = require('../models/Curso'); // ou controller, se tiver
+const cursoController = require('../controllers/cursoController');
 
-// Retornar todos os cursos
-router.get('/', async (req, res) => {
-  const cursos = await Curso.find();
-  res.json(cursos);
-});
+router.get('/', cursoController.getAllCursos);
 
-// ✅ Retornar curso por ID
-router.get('/:id', async (req, res) => {
-  const curso = await Curso.findById(req.params.id);
-  if (!curso) return res.status(404).json({ error: 'Curso não encontrado' });
-  res.json(curso);
-});
+// Se quiseres, podes adicionar post, put, delete aqui também
 
 module.exports = router;

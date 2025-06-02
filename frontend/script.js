@@ -7,7 +7,6 @@ let editandoAlunoId = null;
 
 /**
  * Função principal que inicia a aplicação
- * Carrega cursos e alunos após o DOM estar pronto (defer garante isso)
  */
 async function iniciar() {
   await carregarCursos();
@@ -42,7 +41,7 @@ async function carregarCursos() {
 }
 
 /**
- * Carrega a lista de alunos da API e popula a tabela #alunos-tbody
+ * Carrega a lista de alunos da API e preenche a tabela #alunos-tbody
  */
 async function carregarAlunos() {
   const tbody = document.getElementById('alunos-tbody');
@@ -54,7 +53,7 @@ async function carregarAlunos() {
     tbody.innerHTML = ''; // limpa tabela
 
     alunos.forEach(aluno => {
-      // Busca o nome do curso pelo id armazenado no aluno.curso
+      // Procura o nome do curso pelo id armazenado no aluno.curso
       
       const cursoNome = cursos.find(c => Number(c.id) === Number(aluno.curso))?.nomeDoCurso || 'Desconhecido';
 
@@ -133,7 +132,7 @@ function configurarEventos() {
       if (!resposta.ok) throw new Error(`Erro ao salvar aluno: ${resposta.status}`);
 
       alert(editandoAlunoId ? 'Aluno editado com sucesso!' : 'Aluno adicionado com sucesso!');
-      resetarFormulario();
+      reiniciaFormulario();
       await carregarAlunos();
     } catch (erro) {
       alert(erro.message);
@@ -143,7 +142,7 @@ function configurarEventos() {
 
   // Botão cancelar edição
   cancelarBtn.addEventListener('click', () => {
-    resetarFormulario();
+    reiniciaFormulario();
   });
 }
 
@@ -177,7 +176,7 @@ async function preencherFormularioParaEditar(id) {
 }
 
 /**
- * Apaga um aluno após confirmação do usuário
+ * Apaga um aluno após confirmação do utilizador
  * @param {string} id - ID do aluno a apagar
  */
 async function apagarAluno(id) {
@@ -188,7 +187,7 @@ async function apagarAluno(id) {
     if (!resposta.ok) throw new Error(`Erro ao apagar aluno: ${resposta.status}`);
 
     alert('Aluno apagado com sucesso!');
-    if (editandoAlunoId === id) resetarFormulario();
+    if (editandoAlunoId === id) reiniciaFormulario();
     await carregarAlunos();
   } catch (erro) {
     alert(erro.message);
@@ -197,9 +196,9 @@ async function apagarAluno(id) {
 }
 
 /**
- * Reseta o formulário para estado de criação de novo aluno
+ * Reinicia o formulário para o estado de criação de novo aluno
  */
-function resetarFormulario() {
+function reiniciaFormulario() {
   const form = document.getElementById('aluno-form');
   const cancelarBtn = document.getElementById('cancelar-btn');
   const formTitle = document.getElementById('form-title');
