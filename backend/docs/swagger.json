@@ -1,0 +1,147 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API de Cursos",
+    "version": "1.0.0",
+    "description": "Documentação da API REST para gestao de cursos."
+  },
+  "servers": [
+    {
+      "url": "https://trab1-restapi-bvall0-1.onrender.com",
+      "description": "API hospedada no Render"
+    }
+  ],
+  "paths": {
+    "/cursos": {
+      "get": {
+        "summary": "Lista todos os cursos",
+        "responses": {
+          "200": {
+            "description": "Lista de cursos recebida com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Curso" }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Cria um novo curso",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CursoInput" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Curso criado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Curso" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cursos/{id}": {
+      "get": {
+        "summary": "Pesquisa um curso pelo ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Curso encontrado",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Curso" }
+              }
+            }
+          },
+          "404": { "description": "Curso não encontrado" }
+        }
+      },
+      "put": {
+        "summary": "Atualiza um curso pelo ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CursoInput" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Curso atualizado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Curso" }
+              }
+            }
+          },
+          "404": { "description": "Curso não encontrado" }
+        }
+      },
+      "delete": {
+        "summary": "Apaga um curso pelo ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "204": { "description": "Curso apagado com sucesso" },
+          "404": { "description": "Curso não encontrado" }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Curso": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "example": "abc123" },
+          "nome": { "type": "string", "example": "Introdução à Programação" },
+          "descricao": { "type": "string", "example": "Curso básico de programação." },
+          "duracao": { "type": "integer", "example": 40 }
+        },
+        "required": ["id", "nome", "descricao", "duracao"]
+      },
+      "CursoInput": {
+        "type": "object",
+        "properties": {
+          "nome": { "type": "string", "example": "Introdução à Programação" },
+          "descricao": { "type": "string", "example": "Curso básico de programação." },
+          "duracao": { "type": "integer", "example": 40 }
+        },
+        "required": ["nome", "descricao", "duracao"]
+      }
+    }
+  }
+}
