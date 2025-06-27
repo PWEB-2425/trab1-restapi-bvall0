@@ -1,153 +1,183 @@
-# Trabalho Prático #1
+# Projeto REST API - Gestão de Alunos e Cursos
 
-## Consumo e Implementação de APIs RESTful
-
-### Objetivo Geral
-
-Consolidar os conhecimentos em desenvolvimento web com foco na criação, consumo e implementação de APIs RESTful utilizando tecnologias do ecossistema JavaScript:
-
-- Node.js + Express
-- MongoDB / MongoDB Atlas
-- JSON-Server
-- Fetch API
-- Swagger (opcional)
-
-O projeto simula o ciclo completo de desenvolvimento de uma aplicação web com front-end e back-end separados, incluindo testes e deploy.
+Este projeto consiste numa API RESTful desenvolvida com **Node.js**, **Express** e **MongoDB**, juntamente com um frontend simples para interagir com os dados de **alunos** e **cursos**.
 
 ---
 
-## Partes do Trabalho
+## 🗂️ Estrutura do Projeto
 
-### Parte 1: Estruturação da Base de Dados (JSON)
-
-- Criar um ficheiro `bd.json` com:
-
-  - Lista de alunos: `nome`, `apelido`, `curso`, `anoCurricular`
-  - Lista de cursos: `nomeDoCurso`
-
-- 📁 Diretório sugerido: `/mock-data/`
-- 📄 Entregável: `bd.json`
-
----
-
-### Parte 2: API Simulada com JSON-Server + Testes
-
-- Configurar e iniciar `json-server` com `bd.json`
-- Testar os endpoints com Postman (CRUD de alunos, leitura de cursos)
-- Exportar a coleção de testes
-
-- 📁 Diretório sugerido: `/mock-server/`
-- 📄 Entregáveis:
-  - Código de configuração (`package.json`, script json-server)
-  - Coleção `.json` do Postman em `/tests/`
-
----
-
-### Parte 3: Interface Web (CRUD de Alunos)
-
-- Desenvolver uma página web funcional para gerir alunos:
-  - Ver alunos
-  - Adicionar aluno
-  - Editar aluno
-  - Apagar aluno
-- Utilizar `Fetch API` e programação assíncrona
-
-- 📁 Diretório sugerido: `/frontend/`
-- 📄 Entregável: Página funcional conectada à API simulada
-
----
-
-### Parte 4: API RESTful real (Node.js + Express + MongoDB Atlas)
-
-- Migrar os dados para o MongoDB Atlas
-- Implementar a API Express com endpoints equivalentes ao JSON-server
-- Manter a estrutura RESTful
-- Sugestão : usar mongoose a abordagem MVC (bónus 5%)
-
-- 📁 Diretório sugerido: `/backend/`
-- 📄 Entregável: Código funcional da API com instruções
-
----
-
-### Parte 5: Deploy da Aplicação
-
-- Fazer deploy do front-end no [Vercel](https://vercel.com)
-- (Opcional) Fazer deploy da API no [Render](https://render.com)
-- Adaptar o front-end para consumir a nova API
-
-📄 Incluir no `README.md`:
-
-- URL pública do front-end
-- URL da API real
-- 📄 Entregável: Links funcionais no repositório
-
----
-
-### Parte 6 (Bonificação): Documentação da API
-
-- Utilizar Swagger para documentar os endpoints da API
-- Incluir rota `/api-docs` na aplicação
-
-- 📁 Diretório sugerido: `/backend/docs/`
-- 📄 Entregável: Swagger funcional e acessível
-
----
-
-## Organização do Projeto
-
-```text
-projeto-raiz/
+```
+trab1-restapi-bvall0/
 │
-├── /frontend/ ← Interface web (HTML/CSS/JS)
-├── /backend/ ← API RESTful com Node.js + MongoDB
-├── /mock-server/ ← JSON-server configurado
-├── /mock-data/ ← Base de dados JSON original
-├── /tests/ ← Coleção de testes Postman
-├── README.md ← Instruções, links e notas
-└── .gitignore, etc.
+├── backend/                  # API RESTful com Express + MongoDB
+│   ├── models/               # Modelos Mongoose
+│   ├── routes/               # Rotas da API
+│   ├── .env                  # Variáveis de ambiente
+│   ├── server.js             # Servidor principal
+│   └── package.json
+│
+├── frontend/                 # Página web simples para consumir a API
+│   ├── index.html
+│   ├── style.css
+│   └── script.js
+│
+├── mock-server/             # Mock API com JSON Server 
+│   ├── db.json
+│   └── package.json
 ```
 
 ---
 
-## Sugestão de Branches
+## 🚀 Deploy Back-End no Render
 
-| Branch     | Descrição                        |
-| ---------- | -------------------------------- |
-| `main`     | Versão estável e final           |
-| `dev`      | Desenvolvimento geral            |
-| `frontend` | Interface e interação do usuário |
-| `api`      | API real (Node + MongoDB)        |
-| `deploy`   | Adaptações para Vercel/Render    |
+### 🛠️ Pré-requisitos
 
----
+- Conta no GitHub
+- Conta em [Render](https://render.com/)
+- MongoDB Atlas (base de dados online)
 
-## Critérios de Avaliação
+### 🌐 URL pública da API
 
-| Critério                         | Peso |
-| -------------------------------- | ---- |
-| Base de dados JSON correta       | 10%  |
-| API simulada e testada (Postman) | 10%  |
-| Funcionalidade do front-end      | 30%  |
-| Qualidade da API real (Node.js)  | 30%  |
-| Integração front-end/backend     | 10%  |
-| Deploy funcional                 | 10%  |
-| Bonificação (MVC)                | +5%  |
-| Bonificação (Swagger)            | +5%  |
+`https://nome-do-teu-servico.onrender.com`  
+(Substitui pelo link real gerado pelo Render)
 
----
+### ⚙️ Configurações do Render
 
-## Entrega
-
-- Entrega via **GitHub Classroom**.
-- O repositório deve conter:
-  - Código funcional
-  - README.md com instruções claras
-  - Links de deploy (front e opcionalmente back)
+- **Web Service**
+- Conectar ao repositório GitHub
+- Escolher o diretório `/backend`
+- **Build Command:**  
+  ```
+  npm install
+  ```
+- **Start Command:**  
+  ```
+  npm start
+  ```
+- **Environment Variables:**
+  - `PORT=5000`
+  - `MONGODB_URI=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/...?retryWrites=true...`
 
 ---
 
-### Repositório Base
+## 💻 Como Correr Localmente
 
-Usa o repositório template inicial fornecido no GitHub Classroom.
-# TWT1RESTAPI
-# TRAB1_TEMPLATE
+### 1. Clona o repositório
+
+```bash
+git clone https://github.com/PWEB-2425/trab1-restapi-bvall0.git
+cd trab1-restapi-bvall0
+```
+
+### 2. Backend
+
+```bash
+cd backend
+npm install
+npm run dev
+```
+
+Criar um ficheiro `.env`:
+
+```
+MONGODB_URI=mongodb+srv://bval9088:**********************@cluster0.iqjwizq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+PORT=5000
+```
+
+### 3. Frontend
+
+```bash
+cd ../frontend
+```
+
+Abre o `index.html` no navegador.  
+Garante que o `script.js` está apontando para a URL da API:
+
+```js
+const API_URL = 'https://trab1-restapi-bvall0.onrender.com/';
+```
+
+---
+
+## Vercel
+
+Deploy Front-End no Vercel
+Passos
+Acede a https://vercel.com/
+
+Liga a tua conta GitHub
+
+Cria um novo projeto e escolhe o repositório
+
+Seleciona a branch deploy-frontend
+
+Em Root Directory, coloca: frontend
+
+Framework Preset: Other
+
+Não precisas de configurar build nem output
+
+Finaliza e aguarda o deploy
+
+🔗 URL pública do front-end
+https://trab1-restapi-bvall0.vercel.app/
+
+
+⚠️ No script.js, garante que a variável API_URL está correta, apontando para a URL do backend no Render.
+
+
+## 🧪 Testar API
+
+### Endpoints principais
+
+| Método | Rota          | Descrição                    |
+|--------|---------------|------------------------------|
+| GET    | /alunos       | Lista todos os alunos        |
+| POST   | /alunos       | Cria novo aluno              |
+| GET    | /cursos       | Lista todos os cursos        |
+| POST   | /cursos       | Cria novo curso              |
+| ...    | ...           | Outras operações (PUT, DEL)  |
+
+Testar via Postman ou navegador (GET).
+
+---
+
+## 📦 Mock Server 
+
+Usado para testes rápidos sem conexão com MongoDB.
+
+### Instalação
+
+```bash
+cd mock-server
+npm install
+```
+
+### Executar
+
+```bash
+npm start
+```
+
+Abre em:  
+`http://localhost:5000`
+
+---
+
+## 📚 Tecnologias Usadas
+
+- Node.js
+- Express
+- MongoDB + Mongoose
+- JSON Server (mock)
+- HTML/CSS/JS Vanilla
+- Render.com (Deploy)
+
+---
+
+## ✍️ Autor
+
+Bruno Valente (9088)  
+Projeto PWEB 2025 – REST API (Trabalho Prático 1)
+
+---
