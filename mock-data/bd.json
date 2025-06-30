@@ -1,14 +1,6 @@
 {
   "alunos": [
     {
-      "nome": "Joana",
-      "apelido": "Silva",
-      "curso": 1,
-      "anoCurricular": 2,
-      "idade": 21,
-      "id": "9443"
-    },
-    {
       "nome": "Mariana",
       "apelido": "Costa",
       "curso": 3,
@@ -159,6 +151,14 @@
       "curso": 5,
       "anoCurricular": 1,
       "idade": 34
+    },
+    {
+      "id": "9443",
+      "nome": "Bruno",
+      "apelido": "Silva",
+      "curso": 3,
+      "anoCurricular": 2,
+      "idade": 24
     }
   ],
   "cursos": [
@@ -166,7 +166,10 @@
       "id": "1",
       "nomeDoCurso": "ATUALIZADO:Engenharia da Computação Gráfica e Multimédia"
     },
-    { "id": "2", "nomeDoCurso": "Engenharia de Redes e Sistemas de Computadores" },
+    {
+      "id": "2",
+      "nomeDoCurso": "Engenharia de Redes e Sistemas de Computadores"
+    },
     {
       "id": "3",
       "nomeDoCurso": "Engenharia de Software"

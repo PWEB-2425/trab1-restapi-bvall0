@@ -1,5 +1,5 @@
 // URL base da API (JSON-server)
-const API_BASE = 'http://localhost:3000';
+const API_BASE = 'http://localhost:5000';
 
 // Variáveis globais para armazenar cursos e estado de edição
 let cursos = [];
@@ -30,8 +30,8 @@ async function carregarCursos() {
     cursoSelect.innerHTML = '';
     cursos.forEach(curso => {
       const option = document.createElement('option');
-      option.value = String(curso.id);
-      option.textContent = curso.nomeDoCurso;
+      option.value = curso._id;
+      option.textContent = curso.nome;
       cursoSelect.appendChild(option);
     });
   } catch (erro) {
@@ -55,7 +55,8 @@ async function carregarAlunos() {
     alunos.forEach(aluno => {
       // Procura o nome do curso pelo id armazenado no aluno.curso
       
-      const cursoNome = cursos.find(c => Number(c.id) === Number(aluno.curso))?.nomeDoCurso || 'Desconhecido';
+const cursoNome = cursos.find(c => c._id.toString() === aluno.curso.toString())?.nome || 'Desconhecido';
+
 
 
       const tr = document.createElement('tr');
@@ -104,12 +105,12 @@ function configurarEventos() {
     e.preventDefault();
 
     const alunoData = {
-      nome: form.nome.value.trim(),
-      apelido: form.apelido.value.trim(),
-      curso: parseInt(form.curso.value),
-      anoCurricular: parseInt(form.anoCurricular.value),
-      idade: parseInt(form.idade.value)
-    };
+  nome: form.nome.value.trim(),
+  apelido: form.apelido.value.trim(),
+  curso: form.curso.value,          // string, não int
+  anoCurricular: parseInt(form.anoCurricular.value),
+  idade: parseInt(form.idade.value)
+};
 
     try {
       let resposta;
