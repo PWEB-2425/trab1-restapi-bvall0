@@ -1,5 +1,5 @@
 // URL base da API (JSON-server)
-const API_BASE = 'http://localhost:5000';
+const API_BASE = 'https://trab1-restapi-bvall0-1.onrender.com';
 
 // Variáveis globais para armazenar cursos e estado de edição
 let cursos = [];
